@@ -17,6 +17,7 @@ font-family:'Playfair Display',serif;
 background:radial-gradient(circle at center,#1a0000,#000);
 color:white;
 overflow-x:hidden;
+zoom:0.85;
 }
 
 /* GOLDEN BORDER */
@@ -244,22 +245,6 @@ transition:transform 10s ease;
 transform:scale(1.04);
 }
 
-.card::after{
-content:"";
-position:absolute;
-top:0;
-left:-100%;
-width:50%;
-height:100%;
-background:linear-gradient(120deg,transparent,rgba(255,255,255,.6),transparent);
-transform:skewX(-25deg);
-transition:1.8s;
-}
-
-.card:hover::after{
-left:140%;
-}
-
 /* LOCATION BUTTON */
 
 .scroll-location-btn{
@@ -277,19 +262,7 @@ cursor:pointer;
 box-shadow:0 0 30px gold;
 }
 
-/* ROSE PETALS */
-/*
-.petal{
-position:fixed;
-top:-20px;
-width:18px;
-height:18px;
-background:#ff4d6d;
-border-radius:50% 50% 50% 0;
-opacity:.9;
-animation:fall linear infinite;
-}
-*/
+/* HEART FALLING */
 
 .heart{
 position:fixed;
@@ -302,21 +275,9 @@ animation:fall linear infinite;
 }
 
 @keyframes fall{
-0%{
-transform:translateY(-40px) rotate(0deg);
-opacity:0;
-}
+0%{transform:translateY(-40px) rotate(0deg);opacity:0;}
 20%{opacity:1;}
-100%{
-transform:translateY(110vh) rotate(360deg);
-opacity:0;
-}
-}
-
-
-@keyframes fall{
-0%{transform:translateY(-20px);}
-100%{transform:translateY(110vh);}
+100%{transform:translateY(110vh) rotate(360deg);opacity:0;}
 }
 
 footer{
@@ -330,6 +291,46 @@ width:60%;
 height:2px;
 background:linear-gradient(90deg,transparent,gold,transparent);
 margin:30px auto;
+}
+
+/* MOBILE FIXES */
+
+@media (max-width:768px){
+
+.timeline::before{
+left:20px;
+}
+
+.timeline-item{
+width:100%;
+left:0 !important;
+padding-left:60px;
+padding-right:20px;
+text-align:left;
+}
+
+.timeline-item::before{
+left:10px;
+right:auto;
+}
+
+.timeline-content img{
+width:100%;
+height:auto;
+object-fit:cover;
+}
+
+/* bigger wedding card */
+.card img{
+width:100%;
+max-width:500px;
+}
+
+/* hide button on mobile */
+.scroll-location-btn{
+display:none;
+}
+
 }
 
 </style>
@@ -473,23 +474,6 @@ document.addEventListener("touchend",()=>paused=false);
 function scrollToLocation(){
 document.getElementById("locationSection").scrollIntoView({behavior:"smooth"});
 }
-/*
-function startPetals(){
-
-setInterval(()=>{
-
-let petal=document.createElement("div");
-petal.className="petal";
-petal.style.left=Math.random()*100+"vw";
-petal.style.animationDuration=(5+Math.random()*5)+"s";
-
-document.body.appendChild(petal);
-
-setTimeout(()=>{petal.remove();},10000);
-
-},400);
-
-}*/
 
 function startPetals(){
 
